@@ -59,6 +59,7 @@ header img {
 }
 
 .lose {
-    filter: brightness(0.5);
+    filter: brightness(0.1) sepia(1) hue-rotate(90deg);
+    /* filter: sepia(1) hue-rotate(200deg); */
     transition: all 3s ease;
 }

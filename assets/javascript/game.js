@@ -67,12 +67,14 @@ var game = {
                 var loseSound  = new Audio();
                 var loseSrc  = document.createElement("source");
                 loseSrc.type = "audio/mpeg";
-                loseSrc.src  = "assets/sounds/jabba-the-hutt-laughing.mp3";
+                loseSrc.src  = "assets/sounds/nerfherder.mp3";
                 loseSound.appendChild(loseSrc);
                 loseSound.play();
                 stormtrooper.src = "assets/images/stormtroopercut.png"
                 var playArea = document.getElementById("play-area");
                 playArea.classList.add("lose");
+                var boundNewGame = this.newGame.bind(this);
+                setTimeout(boundNewGame, 4000);
                 break;
             case 1:
                 stormtrooper.src = "assets/images/stormtrooper5.png"
@@ -99,10 +101,11 @@ var game = {
         if(!this.underscoredWord.includes("_")){
             this.currentState = "win";
             console.log("win");
-        } else if(this.guessesRemaining === 0){
-            this.currentState = "lose";
-            console.log("lose");
-        }
+        } 
+        // else if(this.guessesRemaining === 0){
+        //     this.currentState = "lose";
+        //     console.log("lose");
+        // }
         
     },
 
@@ -122,9 +125,11 @@ var game = {
         var wordDisplay = document.getElementById("word");
         wordDisplay.textContent = this.underscoredWord.join(" ");
         console.log(this.underscoredWord.join(" "));
-
-        var stromtrooper = document.getElementById("stormtrooper");
+        var stormtrooper = document.getElementById("stormtrooper");
         stormtrooper.src = "";
+        
+        var playArea = document.getElementById("play-area");
+        playArea.classList.remove("lose");
 
         var remaining = document.getElementById("remaining");
         remaining.textContent = "Guesses Remaining: " + this.guessesRemaining;
