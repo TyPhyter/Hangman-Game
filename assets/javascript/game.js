@@ -19,7 +19,7 @@ var game = {
 
     correctGuesses: 0,
 
-    guessesRemaining : 9,
+    guessesRemaining : 7,
 
     underscoredWord : [],
 
@@ -30,15 +30,16 @@ var game = {
     },
 
     update: function(evt){
+        var keyPress = evt.key.toLowerCase();
         //if pressed key isnt in chosen letters, add it
-        if(!this.chosenLetters.includes(evt.key.toLowerCase())) {
-            this.chosenLetters.push(evt.key.toLowerCase());
+        if(!this.chosenLetters.includes(keyPress)) {
+            this.chosenLetters.push(keyPress);
 
-            if(this.currentWord.includes(evt.key.toLowerCase())){
+            if(this.currentWord.includes(keyPress)){
                 for(var i = 0; i < this.currentWord.length; i++){
                         //if the chosen letter matches the current word at i, reveal it
                         //and increment correct guesses
-                        if(evt.key.toLowerCase() === this.currentWord[i]){
+                        if(keyPress === this.currentWord[i]){
                             this.underscoredWord[i] = this.currentWord[i];
                         }
                 }
@@ -48,6 +49,52 @@ var game = {
                 this.guessesRemaining--;
             }    
         }
+
+        //print update to header display
+        var wordDisplay = document.getElementById("word");
+        wordDisplay.textContent = this.underscoredWord.join(" ");
+
+        //print update to stats footer
+        var remaining = document.getElementById("remaining");
+        remaining.textContent = "Guesses Remaining: " + this.guessesRemaining;
+        var guessed = document.getElementById("guessed");
+        guessed.textContent =" Letters Guessed: " + this.chosenLetters.join(" ");
+
+        //update stormtrooper image and play sounds based on guesses left
+        var stormtrooper =  document.getElementById("stormtrooper");
+        switch(this.guessesRemaining) {
+            case 0:
+                var loseSound  = new Audio();
+                var loseSrc  = document.createElement("source");
+                loseSrc.type = "audio/mpeg";
+                loseSrc.src  = "assets/sounds/jabba-the-hutt-laughing.mp3";
+                loseSound.appendChild(loseSrc);
+                loseSound.play();
+                stormtrooper.src = "assets/images/stormtroopercut.png"
+                var playArea = document.getElementById("play-area");
+                playArea.classList.add("lose");
+                break;
+            case 1:
+                stormtrooper.src = "assets/images/stormtrooper5.png"
+                break;
+            case 2:
+                stormtrooper.src = "assets/images/stormtrooper4.png"
+                break;
+            case 3:
+                stormtrooper.src = "assets/images/stormtrooper3.png"
+                break;
+            case 4:
+                stormtrooper.src = "assets/images/stormtrooper2.png"
+                break;
+            case 5:
+                stormtrooper.src = "assets/images/stormtrooper1.png"
+                break;
+            case 6:
+                stormtrooper.src = "assets/images/stormtrooper0.png"
+                break;
+
+        }
+
         //check win/lose conditions
         if(!this.underscoredWord.includes("_")){
             this.currentState = "win";
@@ -60,19 +107,29 @@ var game = {
     },
 
     newGame : function() {
-        
+        //reset initial values
         this.currentWord = this.randWord();
         this.underscoredWord = [];
         this.chosenLetters = [];
         this.correctGuesses = 0;
-        this.guessesRemaining = 9;
+        this.guessesRemaining = 7;
         this.currentState = "play";
 
         for(var i=0; i < this.currentWord.length; i++){
             this.underscoredWord[i] = "_";
         }
 
+        var wordDisplay = document.getElementById("word");
+        wordDisplay.textContent = this.underscoredWord.join(" ");
         console.log(this.underscoredWord.join(" "));
+
+        var stromtrooper = document.getElementById("stormtrooper");
+        stormtrooper.src = "";
+
+        var remaining = document.getElementById("remaining");
+        remaining.textContent = "Guesses Remaining: " + this.guessesRemaining;
+        var guessed = document.getElementById("guessed");
+        guessed.textContent =" Letters Guessed: " + this.chosenLetters.join(" ");
 
     },
 

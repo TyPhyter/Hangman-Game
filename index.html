@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="assets/css/style.css">
         <title>HANGMAN</title>
     </head>
     <body>
+        <header>
+            <img src="assets/images/trooperlogo.png">
+        </header>
+
+        <section id="play-area">
+            <div id="word"></div>
+            <img id="stormtrooper" src="">
+            <div id="stats">
+                <p id="remaining"></p>
+                <p id="guessed"></p>
+            </div>
+        </section>
         <script src="assets/javascript/game.js"></script>
+        <audio autoplay>
+            <source src="assets/sounds/star-wars-theme-song.mp3">
+        </audio>
     </body>
 </html>

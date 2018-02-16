@@ -1,0 +1,64 @@
+@font-face {
+    font-family: Rebellion;
+    src: url('../fonts/RebellionItalic.otf');
+}
+
+body {
+    width: 100vw;
+    background-image: url("../images/starbackground.jpg");
+}
+
+header {
+    /* text-align: center; */
+    width: 80%;
+    margin: auto;
+}
+
+header img {
+    width: 100%;
+}
+
+#play-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-image: url("../images/corridorbackground.jpg");
+    background-position: center;
+    background-color: grey;
+    width: 80%;
+    height: 80vh;
+    margin: 0px auto;
+}
+
+#stormtrooper {
+    width: 200px;
+    margin: auto;
+}
+
+#word {
+    font-family: Rebellion;
+    background-color: rgba(128, 128, 128, 0.74);
+    font-size: 50px;
+    text-align: center;
+}
+
+#stats {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-family: Rebellion;
+    background-color: rgba(128, 128, 128, 0.74);
+    font-size: 25px;
+    text-align: center;
+}
+
+#guessed {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.lose {
+    filter: brightness(0.5);
+    transition: all 3s ease;
+}
