@@ -50,16 +50,34 @@ header img {
     font-family: Rebellion;
     background-color: rgba(128, 128, 128, 0.74);
     font-size: 25px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 #guessed {
     text-align: left;
     margin-left: 15px;
+    float: left;
+}
+
+#remaining {
+    text-align: left;
+    margin-left: 15px;
+    float: left;
+}
+
+#win-loss {
+    text-align: right;
+    margin-right: 15px;
+    float: right;
 }
 
 .lose {
     filter: brightness(0.1) sepia(1) hue-rotate(90deg);
-    /* filter: sepia(1) hue-rotate(200deg); */
+    filter: sepia(1) hue-rotate(200deg);
+    transition: all 3s ease;
+}
+
+.win {
+    filter: invert(1);
     transition: all 3s ease;
 }
