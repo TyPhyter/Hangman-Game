@@ -97,6 +97,13 @@ var game = {
                     stormtrooper.src = "assets/images/stormtrooper5.png"
                     break;
                 case 2:
+                    var badSound  = new Audio();
+                    var badSrc  = document.createElement("source");
+                    badSrc.type = "audio/mpeg";
+                    badSrc.src  = "assets/sounds/" + this.badSounds[Math.floor(Math.random() * this.badSounds.length)];
+                    badSound.appendChild(badSrc);
+                    badSound.volume = 0.25;
+                    badSound.play();
                     stormtrooper.src = "assets/images/stormtrooper4.png"
                     break;
                 case 3:
