@@ -12,6 +12,7 @@ header {
     /* text-align: center; */
     width: 80%;
     margin: auto;
+    margin-bottom: -20px;
 }
 
 header img {
@@ -73,11 +74,11 @@ header img {
 
 .lose {
     filter: brightness(0.1) sepia(1) hue-rotate(90deg);
-    filter: sepia(1) hue-rotate(200deg);
+    /* filter: sepia(1) hue-rotate(200deg); */
     transition: all 3s ease;
 }
 
 .win {
-    filter: invert(1);
-    transition: all 3s ease;
+    filter: brightness(2);
+    transition: all 4s ease;
 }

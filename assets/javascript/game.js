@@ -13,6 +13,12 @@ var game = {
         "padawan"
     ],
 
+    winSounds: ["forcealways.mp3", "nomatch.mp3", "yodalaughing.mp3"],
+
+    loseSounds: ["nerfherder.mp3", "jabbalaugh.mp3","laughfuzzball.mp3"],
+
+    badSounds: ["vaderbreath.mp3", "light-saber-on.mp3", "chewy_roar.mp3", "blasterstun.mp3", "Muchfear.mp3"],
+
     chosenLetters : [],
 
     currentWord : "",
@@ -77,7 +83,7 @@ var game = {
                     var loseSound  = new Audio();
                     var loseSrc  = document.createElement("source");
                     loseSrc.type = "audio/mpeg";
-                    loseSrc.src  = "assets/sounds/nerfherder.mp3";
+                    loseSrc.src  = "assets/sounds/" + this.loseSounds[Math.floor(Math.random() * this.loseSounds.length)];
                     loseSound.appendChild(loseSrc);
                     loseSound.volume = 0.25;
                     loseSound.play();
@@ -97,6 +103,14 @@ var game = {
                     stormtrooper.src = "assets/images/stormtrooper3.png"
                     break;
                 case 4:
+                    var badSound  = new Audio();
+                    var badSrc  = document.createElement("source");
+                    badSrc.type = "audio/mpeg";
+                    badSrc.src  = "assets/sounds/" + this.badSounds[Math.floor(Math.random() * this.badSounds.length)];
+                    badSound.appendChild(badSrc);
+                    badSound.volume = 0.25;
+                    badSound.play();
+
                     stormtrooper.src = "assets/images/stormtrooper2.png"
                     break;
                 case 5:
@@ -108,12 +122,19 @@ var game = {
 
             }
 
-            //check win/lose conditions
+            //check win condition
             if(!this.underscoredWord.includes("_")){
                 console.log("win");
                 this.wins++;
                 var playArea = document.getElementById("play-area");
-                playArea.classList.add("lose");
+                playArea.classList.add("win");
+                var winSound  = new Audio();
+                winSrc  = document.createElement("source");
+                winSrc.type = "audio/mpeg";
+                winSrc.src  = "assets/sounds/" + this.winSounds[Math.floor(Math.random() * this.winSounds.length)];
+                winSound.appendChild(winSrc);
+                winSound.volume = 0.25;
+                winSound.play();
                 var boundNewGame = this.newGame.bind(this);
                 setTimeout(boundNewGame, 4000);
             }
@@ -142,6 +163,7 @@ var game = {
         
         var playArea = document.getElementById("play-area");
         playArea.classList.remove("lose");
+        playArea.classList.remove("win");
 
         var remaining = document.getElementById("remaining");
         remaining.textContent = "Guesses Remaining: " + this.guessesRemaining;
