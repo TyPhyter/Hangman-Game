@@ -78,8 +78,8 @@ var game = {
             switch(this.guessesRemaining) {
                 case 0:
                     this.losses++;
-                    document.getElementById("theme-song").volume = 0.05;
 
+                    document.getElementById("theme-song").volume = 0.05;
                     var loseSound  = new Audio();
                     var loseSrc  = document.createElement("source");
                     loseSrc.type = "audio/mpeg";
@@ -87,9 +87,11 @@ var game = {
                     loseSound.appendChild(loseSrc);
                     loseSound.volume = 0.25;
                     loseSound.play();
+
                     stormtrooper.src = "assets/images/stormtroopercut.png"
                     var playArea = document.getElementById("play-area");
                     playArea.classList.add("lose");
+
                     var boundNewGame = this.newGame.bind(this);
                     setTimeout(boundNewGame, 4000);
                     break;
@@ -104,6 +106,7 @@ var game = {
                     badSound.appendChild(badSrc);
                     badSound.volume = 0.25;
                     badSound.play();
+
                     stormtrooper.src = "assets/images/stormtrooper4.png"
                     break;
                 case 3:
@@ -135,6 +138,7 @@ var game = {
                 this.wins++;
                 var playArea = document.getElementById("play-area");
                 playArea.classList.add("win");
+                
                 var winSound  = new Audio();
                 winSrc  = document.createElement("source");
                 winSrc.type = "audio/mpeg";
@@ -142,6 +146,7 @@ var game = {
                 winSound.appendChild(winSrc);
                 winSound.volume = 0.25;
                 winSound.play();
+
                 var boundNewGame = this.newGame.bind(this);
                 setTimeout(boundNewGame, 4000);
             }
@@ -190,8 +195,7 @@ game.newGame();
 document.onkeyup = function (evt) {   
 
     game.update(evt);
-    // console.log(game.underscoredWord.join(" "));
-    // console.log(game.guessesRemaining); 
+ 
 
 }
 
